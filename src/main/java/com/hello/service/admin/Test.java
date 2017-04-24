@@ -62,8 +62,8 @@ public class Test {
 		return obj;
 	}
 	public static void main(String[] args) {
-//		Object oo = Test.getAccess_token("wx69b8aaa43aef3792","232cabf26803ecd338107e97c0dab714");
-//		Test.all(oo, Access_token.class);
+		Object oo = Test.getAccess_token("wx69b8aaa43aef3792","232cabf26803ecd338107e97c0dab714");
+		Test.all(oo, Access_token.class);
 //		Object oo = Test.getCallbackip("tq2xM1mVbRGq-oFXEpD9W3GWPmqSXg9t53AO-gkZaO8nXL1Gz0ax1ULWJzU1M6eAjmSwCeBLTVqAyBAdpsS3f1aAlC7dYwB7ygjnpT8Q29_T0pN1vs98kZJhK3hwr89PCCIdABAFFL");
 //		Test.all(oo, Callbackip.class);
 		//消息文本测试
@@ -91,17 +91,17 @@ public class Test {
 	    
 		
 		//创建菜单
-		MenuInfo[] button = new MenuInfo[]{new MenuInfo(),new MenuInfo()};
-		MenuInfo[] sub_button = new MenuInfo[]{new MenuInfo(),new MenuInfo(),new MenuInfo()};
-		sub_button[0] = new MenuInfo("click", "", "歌曲", "SONG", "", null);
-		sub_button[1] = new MenuInfo("view", "", "舞蹈", "", "http://www.soso.com/", null);
-		sub_button[2] = new MenuInfo("view", "", "视频", "", "http://v.qq.com/", null);
-		button[0] = new MenuInfo("click", "", "天气预报", "WEATHER", "", null);
-		button[1] = new MenuInfo("", "", "菜单", "", "", sub_button);
-		Menu bt = new Menu();
-		bt.setButton(button);
-		Object oo = Test.createMenu("-Jm8lXoENq9myQ8iJN9cP4abT8a54Nmh9U5lvT3aFElkih_rewxB4HUxdtQPfqOeQbapm5R7o09T_D1TIsozQwx9oY_pmDMwd7V07gRAxPgEecp7RRgmrM-MqnrXXX3_VCEfAEAOVX", bt);
-		Test.all(oo, BasePojo.class);
+//		MenuInfo[] button = new MenuInfo[]{new MenuInfo(),new MenuInfo()};
+//		MenuInfo[] sub_button = new MenuInfo[]{new MenuInfo(),new MenuInfo(),new MenuInfo()};
+//		sub_button[0] = new MenuInfo("click", "", "歌曲", "SONG", "", null);
+//		sub_button[1] = new MenuInfo("view", "", "舞蹈", "", "http://www.soso.com/", null);
+//		sub_button[2] = new MenuInfo("view", "", "视频", "", "http://v.qq.com/", null);
+//		button[0] = new MenuInfo("click", "", "天气预报", "WEATHER", "", null);
+//		button[1] = new MenuInfo("", "", "菜单", "", "", sub_button);
+//		Menu bt = new Menu();
+//		bt.setButton(button);
+//		Object oo = Test.createMenu("-Jm8lXoENq9myQ8iJN9cP4abT8a54Nmh9U5lvT3aFElkih_rewxB4HUxdtQPfqOeQbapm5R7o09T_D1TIsozQwx9oY_pmDMwd7V07gRAxPgEecp7RRgmrM-MqnrXXX3_VCEfAEAOVX", bt);
+//		Test.all(oo, BasePojo.class);
 		
 //		Map<String, Admin> map = new HashMap<String, Admin>();
 //		
