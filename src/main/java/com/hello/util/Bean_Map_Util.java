@@ -19,9 +19,9 @@ import com.hello.annotation.Column;
 import com.hello.pojo.admin.Admin;
 
 /**
+ * 三种方式将 Map 与 JavaBean 之间转换
  * @author Arien
  * @date 2016-12-22 下午03:19:37 
- * 三种方式将 Map 与 JavaBean 之间转换
  */
 public class Bean_Map_Util {
 

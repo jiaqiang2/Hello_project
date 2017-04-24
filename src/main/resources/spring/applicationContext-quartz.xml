@@ -15,7 +15,7 @@
 		 <property name="maxPoolSize" value="100" />
 		 <property name="queueCapacity" value="500" />
 	</bean>
-	<bean id="bizObject" class="com.gm.b2b.web.web.ExpireJobTask" />
+	<bean id="bizObject" class="com.hello.web.admin.ExpireJobTask" />
 	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		 <property name="targetObject" ref="bizObject" />
 		 <property name="targetMethod" value="doBiz" />

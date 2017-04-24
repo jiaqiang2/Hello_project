@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd ">
+
+	<!-- 配置权限管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="shiroRealm" ref="shiroRealm" />
+		<property name="cacheManager" ref="cacheManager"></property>
+	</bean>
+	<!-- 自定义实现 登录认证 与 权限授权 -->
+	<bean id="shiroRealm" class="com.hello.shiro.ShiroRealm"/>
+	
+	
+	<!-- shiro 过滤器 工厂类  id要与web.xml中的 filter-name 一致-->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 调用配置的权限管理器 -->
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 配置登录的请求地址 -->
+		<property name="loginUrl" value="/login"></property>
+		<!-- 配置请求为 "/login" 时登录成功的返回地址  -->
+		<property name="successUrl" value="/index"></property>
+		<!-- 配置不再权限范围的返回地址  -->
+		<property name="unauthorizedUrl" value="/unauthorizedUrl"></property>
+	</bean>
+	
+	<!-- 缓存管理器  -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+	
+
+</beans>
