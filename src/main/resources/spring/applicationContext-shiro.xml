@@ -11,9 +11,12 @@
 	<!-- 配置权限管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="shiroRealm" ref="shiroRealm" />
-		<property name="cacheManager" ref="cacheManager"></property>
+		<!-- <property name="cacheManager" ref="cacheManager"></property>
+		<property name="session" ref="sessionManager"></property> -->
+		<!-- 默认使用servlet容器session。下面是使用shiro 原生session的例子(细节请参考帮助文档)-->
+    	<!-- <property name="sessionMode" value="native"/> -->
 	</bean>
-	<!-- 自定义实现 登录认证 与 权限授权 -->
+	<!-- 自定义实现 登录认证 与 权限授权，即数据库认证的实现-->
 	<bean id="shiroRealm" class="com.hello.shiro.ShiroRealm"/>
 	
 	
@@ -24,13 +27,19 @@
 		<!-- 配置登录的请求地址 -->
 		<property name="loginUrl" value="/login"></property>
 		<!-- 配置请求为 "/login" 时登录成功的返回地址  -->
-		<property name="successUrl" value="/index"></property>
+		<!-- <property name="successUrl" value="/index"></property> -->
 		<!-- 配置不再权限范围的返回地址  -->
-		<property name="unauthorizedUrl" value="/unauthorizedUrl"></property>
+		<!-- <property name="unauthorizedUrl" value="/unauthorizedUrl"></property> -->
+		<!-- authc 必需已通过认证  -->
+		<property name="filterChainDefinitions">
+			<value>
+				/admin/** = authc   
+			</value>
+		</property>
 	</bean>
-	
 	<!-- 缓存管理器  -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
-	
+	<!-- session管理器 -->
+	<!-- <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionContext"></bean> -->
 
 </beans>

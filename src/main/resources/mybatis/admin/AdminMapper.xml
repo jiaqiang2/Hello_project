@@ -2,42 +2,76 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hello.dao.admin.AdminMapper" >
   <resultMap id="BaseResultMap" type="com.hello.pojo.admin.Admin" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
+    <id column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="username" property="user" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="loginName" property="loginName" jdbcType="VARCHAR" />
+    <result column="cardNo" property="cardNo" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="imgUrl" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="lastLogin" property="lastLogin" jdbcType="DATE" />
+    <result column="statu" property="statu" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    	<!-- 一对多 -->
+    	<collection property="roles" ofType="com.hello.pojo.role.Role" >
+    		<id column="roleId" property="roleId" jdbcType="INTEGER" />
+    		<result column="roleName" property="roleName" jdbcType="VARCHAR" />
+    		<result column="rpId" property="rpId" jdbcType="INTEGER" />
+    		<result column="remark" property="remark" jdbcType="VARCHAR" />
+    		<result column="statu" property="statu" jdbcType="INTEGER" />
+    			<collection property="menus" ofType="com.hello.pojo.menu.Menu" >
+		    		<id column="menuId" property="menuId" jdbcType="INTEGER" />
+		    		<result column="menuName" property="menuName" jdbcType="VARCHAR" />
+		    		<result column="menuType" property="menuType" jdbcType="INTEGER" />
+		    		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		    		<result column="statu" property="statu" jdbcType="INTEGER" />
+		    			
+		    	</collection>
+    	</collection>
+  		
   </resultMap>
   <sql id="Base_Column_List" >
-    id, username, password
+    userId, username, password
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from admin
-    where id = #{id,jdbcType=INTEGER}
+    from tb_user
+    where userid = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAdminByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where username = #{username,jdbcType=STRING}
   </select>
   
   <select id="findAll" resultMap="BaseResultMap"  >
     select 
     <include refid="Base_Column_List" />
-    from admin
+    from tb_user
     where 1=1
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from admin
-    where id = #{id,jdbcType=INTEGER}
+    delete from tb_user
+    where userid = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hello.pojo.admin.Admin" >
-    insert into admin (id, username, password
+    insert into tb_user (userid, username, password
       )
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hello.pojo.admin.Admin" >
-    insert into admin
+    insert into tb_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="userId != null" >
+        userId,
       </if>
       <if test="username != null" >
         username,
@@ -47,8 +81,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -59,7 +93,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.hello.pojo.admin.Admin" >
-    update admin
+    update tb_user
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
@@ -68,12 +102,12 @@
         password = #{password,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where userid = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hello.pojo.admin.Admin" >
-    update admin
+    update tb_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where userid = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

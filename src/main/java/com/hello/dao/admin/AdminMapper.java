@@ -3,9 +3,10 @@ package com.hello.dao.admin;
 import java.util.List;
 
 import com.hello.pojo.admin.Admin;
+import com.hello.pojo.role.Role;
 
 public interface AdminMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer userId);
 
     int insert(Admin record);
 
@@ -13,11 +14,13 @@ public interface AdminMapper {
 
     Admin selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Admin record);
+    int updateByPrimaryKeySelective(Admin admin);
 
-    int updateByPrimaryKey(Admin record);
+    int updateByPrimaryKey(Admin admin);
     
-   
+    Admin findAdminByUsername(String username);
 
 	List<Admin> findAll();
+	
+	List<Role> getRoles(Integer id);
 }
