@@ -56,12 +56,12 @@ public class ShiroRealm extends AuthorizingRealm{
 			List<String> roleNames = new ArrayList<String>();
 			Set<String> permissions = new HashSet<String>();
 			
-			List<Role> roles = adminFacade.getRoles(admin.getId());
+			List<Role> roles = adminFacade.getRoles(admin.getUserId());
 			for (Role role : roles) {
 				roleNames.add(role.getRoleName());
-				if(null != role.getPermissions()){
-					for (Menu permission : role.getPermissions()) {
-						permissions.add(permission.getPermissionName());
+				if(null != role.getMenuList()){
+					for (Menu menu : role.getMenuList()) {
+						permissions.add(menu.getMenuName());
 					}
 				}
 			}
